@@ -3,22 +3,19 @@ const userInput = document.getElementById("user-input");
 const checkBtn = document.getElementById("check-btn");
 const resultsDiv = document.getElementById('results-div');
 
-// Регулярное выражение для проверки российских номеров
-const phoneRegex = /^(\+7|7|8)?\s*\(?(\d{3})\)?[\s-]?(\d{3})[\s-]?(\d{2})[\s-]?(\d{2})$/;
+const phoneRegex = /^(1\s?)?(\(\d{3}\)|\d{3})([\s-]?)\d{3}([\s-]?)\d{4}$/;
 
-const checkNumber = (input) => { 
+const checkNumber = (input) => 
+{ 
   if (input === '') {
-    alert('Пожалуйста, укажите номер телефона');
+    alert('Please provide a phone number');
     return;
   }
-  
-  // Проверка номера на соответствие регулярному выражению
   if (!phoneRegex.test(input)) {
-    resultsDiv.textContent = `Неверный российский номер: ${input}`;
+    resultsDiv.textContent = `Invalid US number: ${input}`;
     return;
   }
-  
-  resultsDiv.textContent = `Верный российский номер: ${input}`;
+  resultsDiv.textContent = `Valid US number: ${input}`;
 };
 
 checkBtn.addEventListener('click', () => {
